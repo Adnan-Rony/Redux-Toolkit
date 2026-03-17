@@ -31,3 +31,20 @@ const counterSlice=createSlice({
  
 export default counterSlice.reducer
 export const {increment,decrement}=counterSlice.actions 
+
+
+
+
+// 🧠 🔥 6 Things You MUST Remember
+
+// Store = global data
+
+// Slice = state + logic
+
+// Action = what happened
+
+// Reducer = how state changes
+
+// Dispatch = send action
+
+// useSelector = get state + auto update UI

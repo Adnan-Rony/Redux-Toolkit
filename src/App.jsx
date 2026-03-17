@@ -1,37 +1,40 @@
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "./components/counters/CounterSlice.js";
+import { Link, Route, Routes } from "react-router-dom";
+import Counter from "./components/counters/Counter.jsx";
+import Todos from "./components/todoSlice/Todos.jsx";
 
 export default function App() {
-  const counters = useSelector((state) => state.counters);
-  const dispatch = useDispatch();
-
-  const handleIncrement = (id) => dispatch(increment(id));
-  const handleDecrement = (id) => dispatch(decrement(id));
-
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Redux Counter App</h1>
+    <div className="min-h-screen bg-[#553e84] text-white flex flex-col items-center justify-center">
 
-      {/* Total */}
-      <p className="mb-4 font-semibold">
-        Total Count: {counters.reduce((sum, c) => sum + c.value, 0)}
-      </p>
+      {/* Hero Section */}
+      <h1 className="text-4xl md:text-5xl font-bold mb-5 text-center">
+        Welcome To Redux Toolkit 
+      </h1>
 
-      {/* Counters */}
-      {counters.map((c) => (
-        <div key={c.id} className="flex items-center gap-2 mb-2">
-          <span className="w-24">Counter {c.id}: {c.value}</span>
-          <button
-            onClick={() => handleDecrement(c.id)}
-            disabled={c.value === 0}
-            className="px-2 py-1 bg-red-500 text-white rounded disabled:opacity-50"
-          >-</button>
-          <button
-            onClick={() => handleIncrement(c.id)}
-            className="px-2 py-1 bg-green-500 text-white rounded"
-          >+</button>
-        </div>
-      ))}
+      {/* Navigation Cards */}
+      <div className="flex gap-6">
+        <Link
+          to="/"
+          className="bg-white text-black px-6 py-4 rounded-lg shadow hover:scale-105 transition"
+        >
+          Counter App
+        </Link>
+
+        <Link
+          to="/todo"
+          className="bg-white text-black px-6 py-4 rounded-lg shadow hover:scale-105 transition"
+        >
+          Todo App
+        </Link>
+      </div>
+
+      {/* Routes */}
+      <div className="w-full mt-10 bg-white text-black p-6 rounded-t-3xl">
+        <Routes>
+          <Route path="/" element={<Counter />} />
+          <Route path="/todo" element={<Todos />} />
+        </Routes>
+      </div>
     </div>
   );
 }
