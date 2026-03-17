@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 
-const initialState={
-    todos:[],
-    filter:"all"
-}
+const initialState=[]
 
 const todoSlice=createSlice({
     name:"todos",
     initialState,
     reducers:{
         addTodo:(state,action)=>{
-            state.todos.push({
+            state.push({
                 id:Date.now(),
                 text:action.payload,
                 completed:false
@@ -25,7 +22,7 @@ const todoSlice=createSlice({
 
 
         toggletodo:(state,action)=>{
-            const todoIndex=state.todos.findIndex(todo=>todo.id===action.payload)
+            const todoIndex=state.findIndex(todo=>todo.id===action.payload)
             state[todoIndex].completed=!state[todoIndex].completed
         }
     }
